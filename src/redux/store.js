@@ -1,7 +1,11 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 
-const rootReducer = combineReducers({});
+import { moviesReducer } from 'redux/reducers/movie-reducer';
+
+const rootReducer = combineReducers({
+  moviesReducer
+});
 
 function configureStore(initialState) {
   let composeEnhancers = null;
