@@ -9,6 +9,7 @@ export default function Routes() {
     <Switch>
       <Route exact path="/" component={HomePage} />
       <Route path="/movie/:id" component={MovieDetailPage} />
+      <Route component={() => <h1>Oops! Page not found.</h1>} />
     </Switch>
   );
 }

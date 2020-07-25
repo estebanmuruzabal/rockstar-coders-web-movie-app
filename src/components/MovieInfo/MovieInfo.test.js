@@ -10,6 +10,7 @@ const props = {
   voteCount: 44,
   releaseDate: 'Monday 5 Feb',
   overview: 'a great movie',
+  trailers: [{ id: '213123', key: '213123' }]
 };
 
 function render(props) {

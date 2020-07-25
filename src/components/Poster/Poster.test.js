@@ -16,7 +16,8 @@ describe("Poster tests", () => {
     posterPath: '/movie/53213',
     voteAverage: 123,
     releaseDate: 'Monday 22 April',
-    title: 'matrix'
+    title: 'matrix',
+    withHoverStyle: false
   };
 
   it("Snapshot test", () => {

@@ -2,10 +2,10 @@ import React from 'react';
 import { IMAGES_ENDPOINT_URL } from 'configs/environment-variables'
 import PropTypes from 'prop-types';
 
-const Poster = ({ id, posterPath, title, voteAverage, releaseDate, showInfo}) => {
+const Poster = ({ id, posterPath, title, voteAverage, releaseDate, showInfo, withHoverStyle }) => {
   return(
-    <div className="poster-container -with-hover">
-      <img className="poster-container__img" key={id} alt="poster-preview" src={ `${IMAGES_ENDPOINT_URL}/w342/${posterPath}` } />
+    <div className={'poster-container' + (withHoverStyle && ' -with-hover')}>
+      <img className='poster-container__img' key={id} alt='poster-preview' src={ `${IMAGES_ENDPOINT_URL}/w342/${posterPath}` } />
       { showInfo &&
         <div className="poster-container__header">
           <span className="poster-container__header-subtitle">{title}</span>
@@ -23,6 +23,7 @@ Poster.propTypes = {
   voteAverage: PropTypes.number,
   title: PropTypes.string.isRequired,
   releaseDate: PropTypes.string,
+  withHoverStyle: PropTypes.bool.isRequired
 };
 
 export default Poster;

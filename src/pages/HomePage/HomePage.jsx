@@ -1,35 +1,32 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { fetchMoviesIfNeeded } from 'redux/actions/movie-actions';
 import MovieList from 'components/MovieList';
 import Spinner from 'components/Spinner';
 import PropTypes from 'prop-types';
 
-class HomePage extends Component {
-  componentDidMount() {
-    const { fetchMoviesIfNeeded } = this.props;
-    fetchMoviesIfNeeded();
-  }
+function HomePage ({ movies, loading, errors, fetchMoviesIfNeeded }) {
+  useEffect(() => {
+    if (!movies.length) {
+      fetchMoviesIfNeeded()
+    }
+  }, [movies, loading, errors, fetchMoviesIfNeeded]);
 
-  render() {
-    const { movies, loading, errors } = this.props;
-
-    if (errors) {
-      return (
-        <div>There has been an error. Please try again later</div>
-      );
-    } else if (loading) {
-      return (
-        <Spinner />
-      );
-    } else if (movies.length) {
-      return  (
-        <div className="homepage-container">
-          <MovieList movies={movies} />
-        </div>
-      );
-    } else return null;
-  }
+  if (errors) {
+    return (
+      <div>There has been an error. Please try again later</div>
+    )
+  } else if (loading) {
+    return (
+      <Spinner />
+    )
+  } else if (movies.length) {
+    return (
+      <div className='homepage-container'>
+        <MovieList movies={movies} />
+      </div>
+    )
+  } else return null
 }
 
 const mapStateToProps = state => ({

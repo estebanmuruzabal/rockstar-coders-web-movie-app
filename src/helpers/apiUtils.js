@@ -1,4 +1,4 @@
-export function checkStatus(response) {
+function checkStatus(response) {
   if (!response.ok) {
     const error = new Error(response.statusText);
     error.response = response;
@@ -7,11 +7,11 @@ export function checkStatus(response) {
   return response;
 }
 
-export function parseJSON(response) {
+function parseJSON(response) {
   return response.json();
 }
 
-export const requestHeaderOptions = (method, body = null) => {
+const requestHeaderOptions = (method, body = null) => {
   return {
     method: method.toUpperCase(),
     headers: { 'Content-Type': 'application/json' },

@@ -1,6 +1,6 @@
-import { FETCH_MOVIES } from 'redux/constants';
+import { FETCH_MOVIES, FETCH_CASTS, FETCH_TRAILERS, FETCH_MOVIE_DETAIL } from 'redux/constants';
 
-const initialState = {
+export const initialState = {
   items: [],
   isFetching: false,
   error: null
@@ -10,6 +10,7 @@ function initializeState() {
   return Object.assign({}, initialState);
 }
 
+// disclaimer: usually I use a file per reducer, but as these reducers are small I can keep them all here
 export function moviesReducer(state = initializeState(), action = {}) {
   switch (action.type) {
     case `${FETCH_MOVIES}_PENDING`:
@@ -38,7 +39,6 @@ const moviesListSelector = (movies) => {
   });
 }
 
-// both reducers in a single file only because they are simple and not long
 export function movieDetailReducer(state = initializeState(), action = {}) {
   switch (action.type) {
     case `${FETCH_MOVIE_DETAIL}_PENDING`:
@@ -56,6 +56,50 @@ export function movieDetailReducer(state = initializeState(), action = {}) {
         isFetching: false,
         error: action.error,
       });
+    default:
+      return state;
+  }
+}
+
+export function castsReducer (state = initializeState(), action = {}) {
+  switch (action.type) {
+    case `${FETCH_CASTS}_PENDING`:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case `${FETCH_CASTS}_FULFILLED`:
+      return Object.assign({}, state, {
+        isFetching: false,
+        items: action.payload.results,
+        error: null
+      })
+    case `${FETCH_CASTS}_REJECTED`:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error
+      })
+    default:
+      return state
+  }
+}
+
+export function trailersReducer (state = initializeState(), action = {}) {
+  switch (action.type) {
+    case `${FETCH_TRAILERS}_PENDING`:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case `${FETCH_TRAILERS}_FULFILLED`:
+      return Object.assign({}, state, {
+        isFetching: false,
+        items: action.payload.results,
+        error: null
+      })
+    case `${FETCH_TRAILERS}_REJECTED`:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error
+      })
     default:
       return state;
   }

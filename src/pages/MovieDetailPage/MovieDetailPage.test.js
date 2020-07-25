@@ -11,6 +11,11 @@ const props = {
     isFetching: false,
     items: {}
   },
+  trailersReducer: {
+    isPending: false,
+    items: {},
+    error: null
+  },
   match: {
     params: {
       id: 1233

@@ -1,4 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rockstar Coders Movie Web App Challenge
+
+This is a Movie App built in [ReactJS](http://facebook.github.io/react/index.html).
+It uses an open source backend API [The Movie Database (TMDb) API] (https://www.themoviedb.org/documentation/api) to display data.
+
+## Demo link
+Demo running in the following aws bucket link: 
+
+## What it does?
+* List of popular movies.
+* View detail movie info including poster, overview, rates and runs its trailer automatically.
+
+## Libraries
+
+* State management using [React-Redux](https://github.com/reactjs/react-redux)
+* Environment set-up using [Create-React-App](https://github.com/facebookincubator/create-react-app)
+* Added Airbnb style Linter [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
+* Responsive design using [React-Bootstrap](https://react-bootstrap.github.io/)
 
 ## Available Scripts
 
@@ -27,6 +44,10 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `yarn deploy:dev`
+
+Will deploy automaticaly to the aws bucket
+
 ### `yarn eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
@@ -37,11 +58,6 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
 
 ### Code Splitting
 

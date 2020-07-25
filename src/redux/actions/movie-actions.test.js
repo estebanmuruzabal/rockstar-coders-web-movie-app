@@ -1,5 +1,5 @@
-import { fetchMoviesIfNeeded, fetchMovieDetail } from 'redux/actions/movie-actions';
-import { FETCH_MOVIES, FETCH_MOVIE_DETAIL } from 'redux/constants';
+import { fetchMovieDetail, fetchMoviesIfNeeded, fetchTrailerList } from 'redux/actions/movie-actions';
+import { FETCH_MOVIES, FETCH_TRAILERS, FETCH_MOVIE_DETAIL } from 'redux/constants';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
@@ -14,6 +14,16 @@ const setup = () => {
 
 const reducers = {
   moviesReducer: {
+    isPending: false,
+    items: {},
+    error: null
+  },
+  castsReducer: {
+    isPending: false,
+    items: {},
+    error: null
+  },
+  trailersReducer: {
     isPending: false,
     items: {},
     error: null
@@ -63,7 +73,7 @@ describe('actions tests', () => {
     window.fetch = jest.fn().mockImplementation(() =>
       Promise.resolve(mockResponse(200, null, JSON.stringify({ ok: true, 'meta': null, 'errors': null, 'data': ['movie1'] }))));
 
-    return store.dispatch(fetchMovieDetail({ id: 3213 }))
+    return store.dispatch(fetchMovieDetail())
       .then(() => {
         // Check that after parsing the body as JSON the success actions were called.
         const calledActions = store.getActions();
@@ -74,4 +84,22 @@ describe('actions tests', () => {
           payload: { 'ok': true, 'meta': null, 'errors': null, 'data': ['movie1'] }});
       });
   });
+  it('should create pending, and fullfilled actions for fetching a movie detail', () => {
+    const { mockStore } = setup()
+    const store = mockStore(reducers)
+
+    window.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve(mockResponse(200, null, JSON.stringify({ ok: true, 'meta': null, 'errors': null, 'data': ['movie1'] }))))
+
+    return store.dispatch(fetchTrailerList())
+      .then(() => {
+        // Check that after parsing the body as JSON the success actions were called.
+        const calledActions = store.getActions()
+        expect(calledActions.length).toBe(2)
+        expect(calledActions).toContainEqual({ type: `${FETCH_TRAILERS}_PENDING` })
+        expect(calledActions).toContainEqual({
+          type: `${FETCH_TRAILERS}_FULFILLED`,
+          payload: { 'ok': true, 'meta': null, 'errors': null, 'data': ['movie1'] } })
+      })
+  })
 }); 

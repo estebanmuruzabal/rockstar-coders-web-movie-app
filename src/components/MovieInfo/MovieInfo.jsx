@@ -1,9 +1,10 @@
-import React from 'react';
-import { Row } from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import React from 'react'
+import { Row } from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import TrailerList from 'components/TrailerList'
 
 const MovieInfo = ({
-  title, voteAverage, voteCount, releaseDate, overview
+  title, voteAverage, voteCount, releaseDate, overview, trailers
 }) => {
   return(
     <div className="movie-info-container">
@@ -25,6 +26,9 @@ const MovieInfo = ({
             Original Release: {releaseDate.substring(0,4)}
           </div>
       </Row>
+      <Row className='movie-info-container__trailer'>
+        <TrailerList data={trailers.slice(0, 1)} />
+      </Row>
     </div>
   );
 }
@@ -35,6 +39,7 @@ MovieInfo.propTypes = {
   voteCount: PropTypes.number.isRequired,
   releaseDate: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
+  trailers: PropTypes.array.isRequired
 };
 
 export default MovieInfo;

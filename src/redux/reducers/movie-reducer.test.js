@@ -1,6 +1,6 @@
-import { FETCH_MOVIES, FETCH_MOVIE_DETAIL } from 'redux/constants';
-import { moviesReducer, movieDetailReducer } from 'redux/reducers/movie-reducer';
-import expect from 'expect';
+import { FETCH_MOVIES, FETCH_CASTS, FETCH_TRAILERS, FETCH_MOVIE_DETAIL } from 'redux/constants'
+import { moviesReducer, castsReducer, trailersReducer, movieDetailReducer } from 'redux/reducers/movie-reducer'
+import expect from 'expect'
 
 describe('movie reducer tests', () => {
   const initialState = {
@@ -77,4 +77,70 @@ describe('movie reducer tests', () => {
       error: rejectedAction.error,
     });
   });
+
+  it('should handle FETCH_CASTS_PENDING', () => {
+    const pendingAction = { type: `${FETCH_CASTS}_PENDING` }
+
+    expect(castsReducer({}, pendingAction)).toEqual({
+      isFetching: true
+    })
+  })
+
+  it('should handle FETCH_CASTS_FULFILLED', () => {
+    const fullfilledAction = {
+      type: `${FETCH_CASTS}_FULFILLED`,
+      payload: { results: {} }
+    }
+
+    expect(castsReducer({}, fullfilledAction)).toEqual({
+      isFetching: false,
+      items: fullfilledAction.payload.results,
+      error: null
+    })
+  })
+
+  it('should handle FETCH_CASTS_REJECTED', () => {
+    const rejectedAction = {
+      type: `${FETCH_CASTS}_REJECTED`,
+      error: {}
+    }
+
+    expect(castsReducer({}, rejectedAction)).toEqual({
+      isFetching: false,
+      error: rejectedAction.error
+    })
+  })
+
+  it('should handle FETCH_TRAILERS_PENDING', () => {
+    const pendingAction = { type: `${FETCH_TRAILERS}_PENDING` }
+
+    expect(trailersReducer({}, pendingAction)).toEqual({
+      isFetching: true
+    })
+  })
+
+  it('should handle FETCH_TRAILERS_FULFILLED', () => {
+    const fullfilledAction = {
+      type: `${FETCH_TRAILERS}_FULFILLED`,
+      payload: { results: {} }
+    }
+
+    expect(trailersReducer({}, fullfilledAction)).toEqual({
+      isFetching: false,
+      items: fullfilledAction.payload.results,
+      error: null
+    })
+  })
+
+  it('should handle FETCH_TRAILERS_REJECTED', () => {
+    const rejectedAction = {
+      type: `${FETCH_TRAILERS}_REJECTED`,
+      error: {}
+    }
+
+    expect(trailersReducer({}, rejectedAction)).toEqual({
+      isFetching: false,
+      error: rejectedAction.error
+    })
+  })
 });
