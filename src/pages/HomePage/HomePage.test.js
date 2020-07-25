@@ -1,5 +1,6 @@
 import * as React from 'react';
-import HomePage from './HomePage';
+import HomePage from 'pages/HomePage';
+import MovieList from 'components/MovieList';
 import Spinner from 'components/Spinner';
 import renderer from 'react-test-renderer';
 import { BrowserRouter } from 'react-router-dom';
@@ -63,4 +64,13 @@ describe('HomePage tests', () => {
 
     expect(wrapper.contains(<Spinner />)).toBe(true)
   });
+
+
+  it('if loading prop is true and there are movies, it should show the MoviewList component', () => {
+    const wrapper = render(reducerWithMovies);
+
+    expect(wrapper.contains(
+      <MovieList movies={reducerWithMovies.moviesReducer.items} />
+    )).toBe(true)
+});  
 });

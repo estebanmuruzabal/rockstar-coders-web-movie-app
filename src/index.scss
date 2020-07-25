@@ -1,0 +1,18 @@
+@import "node_modules/compass-mixins/lib/_compass.scss";
+
+@import "styles/variables.scss";
+@import "styles/sharedStyles.scss";
+@import "styles/overrides.scss";
+@import "styles/mediaQueryMixins.scss";
+@import "styles/fonts/fonts.scss";
+
+// pages styles imports
+@import "pages/HomePage/HomePage.scss";
+@import "pages/MovieDetailPage/MovieDetailPage.scss";
+
+// components styles imports
+@import "components/MovieList/MovieList.scss";
+@import "components/MovieInfo/MovieInfo.scss";
+@import "components/Poster/Poster.scss";
+@import "components/Header/Header.scss";
+@import "components/Spinner/Spinner.scss"; 

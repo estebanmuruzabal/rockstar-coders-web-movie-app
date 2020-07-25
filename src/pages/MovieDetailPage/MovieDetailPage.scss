@@ -1,0 +1,19 @@
+.movie-detail-container {
+  background-size: cover;
+  height: 100vh;
+  padding: 40px 0px;
+  @include respond-below(sm) {
+    padding: 0px;
+  }
+  &__card {
+    background: rgba(0,0,0,.85);
+
+    &-poster {
+      padding: 0px;
+    }
+
+    &-info {
+      padding: 10px 30px 20px;
+    }
+  }
+}

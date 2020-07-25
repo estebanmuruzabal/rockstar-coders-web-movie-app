@@ -1,0 +1,52 @@
+.poster-container {
+  display: flex;
+  justify-content: center;
+  opacity: 0.8;
+  width: 100%;
+  padding: 10px 0;
+
+  &:hover {
+    opacity: 1;
+    .poster-container__header {
+      opacity: 1;
+    }
+  }
+
+  &-with-hover {
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+  @include respond-below(sm) {
+    height: 100%;
+  }
+  &__header {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 75%;
+    margin: 10px;
+    opacity: 0;
+
+    &-title {
+      font-weight: bold;
+      font-size: $secundary-header-font-size;
+      color: $secundary-header-font-color;
+    }
+
+    &-subtitle {
+      font-size: $secundary-header-font-size;
+      font-weight: bold;
+      color: $secundary-header-font-color;
+    }
+  }
+  &__img {
+    width: 100%;
+    height: 100%;
+    @include respond-below(sm) {
+      height: auto;
+    }
+  }
+}

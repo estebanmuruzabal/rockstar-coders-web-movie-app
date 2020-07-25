@@ -1,0 +1,21 @@
+.movie-info-container {
+  &__overview {
+    flex-direction: column;
+  }
+  &__averages {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+  }
+  &__title {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: $primary-header-font-size;
+    color: $primary-header-font-color;
+  }
+  &__subtitle {
+    font-size: $secundary-header-font-size;
+    color: $secundary-header-font-color;
+    font-weight: bold;
+  }
+}

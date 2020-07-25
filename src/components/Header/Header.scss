@@ -1,0 +1,34 @@
+.header {
+  position: fixed;
+  top:0;
+  width: 100%;
+  height: 60px;
+  z-index: 100;
+  background: $header-background-color;
+  display: flex;
+  justify-content: center;
+
+  &__app-title {
+    display: flex;
+    align-items: center;
+    font-size: 3em;
+    font-weight: 700;
+    color: $primary-header-font-color;
+    @include respond-below(al) {
+      font-size: 1em;
+    }
+  }
+
+  &__back-button {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 20px;
+  }
+}

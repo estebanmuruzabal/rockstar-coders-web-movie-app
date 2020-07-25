@@ -1,0 +1,22 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  background-color: $background-color;
+  color: $general-font-color;
+  height: 100vh;
+  font-size: $general-text-size;
+  font-family: "Helvetica Neue", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.body-container {
+  margin-top: 60px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

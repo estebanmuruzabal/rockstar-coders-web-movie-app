@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchMoviesIfNeeded } from 'redux/actions/movie-actions';
+import MovieList from 'components/MovieList';
 import Spinner from 'components/Spinner';
 import PropTypes from 'prop-types';
 
@@ -12,7 +13,6 @@ class HomePage extends Component {
 
   render() {
     const { movies, loading, errors } = this.props;
-    console.log(movies);
 
     if (errors) {
       return (
@@ -25,6 +25,7 @@ class HomePage extends Component {
     } else if (movies.length) {
       return  (
         <div className="homepage-container">
+          <MovieList movies={movies} />
         </div>
       );
     } else return null;

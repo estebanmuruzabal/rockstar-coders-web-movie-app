@@ -1,6 +1,14 @@
 import { callApi } from 'helpers/apiUtils';
 import { API_KEY, BACKEND_ENDPOINT } from 'configs/environment-variables';
-import { FETCH_MOVIES } from 'redux/constants';
+import { FETCH_MOVIES, FETCH_MOVIE_DETAIL } from 'redux/constants';
+
+export function fetchMovieDetail(id) {
+  return callApi(
+    `${BACKEND_ENDPOINT}/3/movie/${id}?api_key=${API_KEY}`,
+    FETCH_MOVIE_DETAIL,
+    'get',
+  );
+}
 
 export function fetchMovies() {
   return callApi(

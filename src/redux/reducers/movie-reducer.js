@@ -37,3 +37,26 @@ const moviesListSelector = (movies) => {
     return movie.poster_path != null;
   });
 }
+
+// both reducers in a single file only because they are simple and not long
+export function movieDetailReducer(state = initializeState(), action = {}) {
+  switch (action.type) {
+    case `${FETCH_MOVIE_DETAIL}_PENDING`:
+      return Object.assign({}, state, {
+        isFetching: true,
+      });
+    case `${FETCH_MOVIE_DETAIL}_FULFILLED`:
+      return Object.assign({}, state, {
+        isFetching: false,
+        items: action.payload,
+        error: null,
+      });
+    case `${FETCH_MOVIE_DETAIL}_REJECTED`:
+      return Object.assign({}, state, {
+        isFetching: false,
+        error: action.error,
+      });
+    default:
+      return state;
+  }
+}
