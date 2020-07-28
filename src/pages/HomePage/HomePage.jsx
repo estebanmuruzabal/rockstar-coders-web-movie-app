@@ -23,10 +23,16 @@ function HomePage ({ movies, loading, errors, fetchMoviesIfNeeded }) {
     setMovies(moviesFiltered);
   }
 
-  const setRatingFilter = (value) => {
+  const filterRatingCondition = (movie, value) => {
     // we multiply by 2 because our star component goes from 1 to 5 and the movies rating are from 1 to 10
-    const ratingValue = value * 2; 
-    const moviesFiltered = movies.filter(movie => movie.vote_average <= ratingValue);
+    const ratingValue = value * 2;
+    const average = Number(movie.vote_average.toFixed(0));
+    // we return the current movie ratingValue or two stars less :)
+    return average === ratingValue || average === (ratingValue - 1) || average === (ratingValue - 2);
+  };
+
+  const setRatingFilter = (ratingValue) => {
+    const moviesFiltered = movies.filter(movie => filterRatingCondition(movie, ratingValue));
     setMovies(moviesFiltered);
   }
 
