@@ -5,10 +5,12 @@ It uses an open source backend API [The Movie Database (TMDb) API] (https://www.
 
 ## Demo link
 Demo running in the following aws bucket link: 
+http://rocket-coders-movie-challenge.s3-website-sa-east-1.amazonaws.com
 
 ## What it does?
 * List of popular movies.
 * View detail movie info including poster, overview, rates and runs its trailer automatically.
+* Filter by the movie name or the vote average.
 
 ## Libraries
 
@@ -16,6 +18,7 @@ Demo running in the following aws bucket link:
 * Environment set-up using [Create-React-App](https://github.com/facebookincubator/create-react-app)
 * Added Airbnb style Linter [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react)
 * Responsive design using [React-Bootstrap](https://react-bootstrap.github.io/)
+* React-Icons
 
 ## Available Scripts
 
