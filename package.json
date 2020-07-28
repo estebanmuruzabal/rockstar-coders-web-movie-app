@@ -27,6 +27,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "NODE_PATH=./src react-scripts test",
+    "deploy:dev": "aws s3 sync build/ s3://rocket-coders-movie-challenge --acl public-read",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
