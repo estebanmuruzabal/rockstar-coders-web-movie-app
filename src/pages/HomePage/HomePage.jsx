@@ -1,16 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { fetchMoviesIfNeeded } from 'redux/actions/movie-actions';
 import MovieList from 'components/MovieList';
+import SearchBox from 'components/SearchBox';
+import StarRating from 'components/StarRating';
 import Spinner from 'components/Spinner';
 import PropTypes from 'prop-types';
 
 function HomePage ({ movies, loading, errors, fetchMoviesIfNeeded }) {
+  const [moviesFetched, setMovies] = useState([]);
+
   useEffect(() => {
     if (!movies.length) {
       fetchMoviesIfNeeded()
+    } else {
+      setMovies(movies);
     }
   }, [movies, loading, errors, fetchMoviesIfNeeded]);
+
+  const handleSearchInputChanges = (searchValue) => {
+    const moviesFiltered = movies.filter(movie => movie.title.toLowerCase().includes(searchValue.toLowerCase()));
+    setMovies(moviesFiltered);
+  }
+
+  const setRatingFilter = (value) => {
+    // we multiply by 2 because our star component goes from 1 to 5 and the movies rating are from 1 to 10
+    const ratingValue = value * 2; 
+    const moviesFiltered = movies.filter(movie => movie.vote_average <= ratingValue);
+    setMovies(moviesFiltered);
+  }
 
   if (errors) {
     return (
@@ -20,13 +38,15 @@ function HomePage ({ movies, loading, errors, fetchMoviesIfNeeded }) {
     return (
       <Spinner />
     )
-  } else if (movies.length) {
+  } else {
     return (
       <div className='homepage-container'>
-        <MovieList movies={movies} />
+        <SearchBox handleSearchInputChanges={handleSearchInputChanges} />
+        <StarRating setRatingFilter={setRatingFilter} />
+        <MovieList movies={moviesFetched} />
       </div>
     )
-  } else return null
+  }
 }
 
 const mapStateToProps = state => ({

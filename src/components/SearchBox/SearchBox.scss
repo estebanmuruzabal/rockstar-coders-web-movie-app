@@ -1,0 +1,29 @@
+.movie-list-container {
+  display: flex;
+	flex-wrap: wrap;
+}
+
+.search-box-container {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+
+  &_search-input {
+    display: flex;
+    border-radius: 20px;
+    font-size: $general-text-size;
+    border-width: 0px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+    &:hover {
+      opacity: 1;
+      cursor: text;
+    }
+  }
+
+  &_rating-box {
+    display: flex;
+  }
+}
